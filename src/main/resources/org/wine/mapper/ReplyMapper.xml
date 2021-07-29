@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.wine.mapper.ReplyMapper">
+
+ <resultMap type="org.wine.domain.ReplyVO" id="ReplyVO">
+  <result property="rno" column="rno"/>
+  <result property="boardNum" column="BOARD_NUM"/>
+  <result property="reply" column="REPLY"/>
+  <result property="replyer" column="REPLYER"/>
+  <result property="replyDate" column="REPLY_DATE"/>
+ </resultMap>
+ 
+<insert id="insert">
+ insert into tbl_Reply(rno, board_Num, replyer, reply)
+ values (seq_reply.nextval, #{boardNum}, #{replyer}, #{reply})
+</insert>
+
+<select id = "read" resultMap="ReplyVO"> 
+select * from tbl_Reply where rno = #{rno}
+</select> 
+
+<delete id="delete">
+delete from tbl_Reply where rno = #{rno}
+</delete>
+
+<update id ="update">
+ update tbl_Reply set reply = #{reply}
+ where rno = #{rno}
+</update>
+
+<!--  <select id = "getListWithPaging" resultType="org.conan.domain.ReplyVO">
+select rno, boardNum, reply, replayer, replyDate, updateDate
+from tblReplyTest
+where boardNum=#{boardNum}
+</select> -->
+
+<select id="getListWithPaging" resultMap="ReplyVO">
+<![CDATA[
+select rno, board_Num, reply, replyer, reply_Date
+from
+(select /*+ INDEX(tblReplyTest idx_reply) */
+rownum rn, rno, board_Num, reply, replyer, reply_Date
+from tbl_Reply
+where board_Num=#{boardNum}
+and rno>0
+and rownum <= #{cri.pageNum} * #{cri.amount}
+)
+where rn > (#{cri.pageNum}-1)*#{cri.amount}
+]]>
+</select>
+
+<select id="getCountByboardNum" resultType="int">
+select count(rno)
+from tbl_Reply where board_Num = #{boardNum}
+</select>
+
+
+
+</mapper>
