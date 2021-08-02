@@ -25,14 +25,20 @@
 	
 	<select id="getListWithPaging" resultMap="sellerBoardInfo">
 		<![CDATA[
-		select * from(
-			select * from(
-				SELECT rownum rn, PARENT_SELLER_BNO,CHILD_SELLER_BNO,GRP_ORD,title,content,ANSWER_WRITER,WRITER,regdate_c
-				FROM
-					(select PARENT_SELLER_BNO,CHILD_SELLER_BNO,title,content,ANSWER_WRITER,WRITER,TO_CHAR(regdate, 'YYYY-MM-DD HH24:mi:ss') as regdate_c,GRP_ORD from
-					(select * from tbl_seller_board)  order by CHILD_SELLER_BNO desc, grp_ord  asc )order by rn asc)
-			where  rownum <= #{pageNum} * #{amount} )
-		where rn > (#{pageNum} -1) * #{amount}		
+		
+		 select * from(
+			select * from(        
+          SELECT rownum rwn, rn,PARENT_SELLER_BNO,CHILD_SELLER_BNO,GRP_ORD,title,content,ANSWER_WRITER,WRITER,regdate_c
+                    FROM
+					(      
+                SELECT rownum rn,PARENT_SELLER_BNO,CHILD_SELLER_BNO,GRP_ORD,title,content,ANSWER_WRITER,WRITER,regdate_c 
+                 from(           
+                 select  PARENT_SELLER_BNO,CHILD_SELLER_BNO,title,content,ANSWER_WRITER,WRITER,TO_CHAR(regdate, 'YYYY-MM-DD HH24:mi:ss') as regdate_c,GRP_ORD 
+                            from (select * from tbl_seller_board) 
+                            order by CHILD_SELLER_BNO desc, grp_ord asc )order by rn desc
+                    )order by rn asc)
+          where  rownum <=  #{pageNum} * #{amount} )
+		where rn >	(#{pageNum} -1) * #{amount}
 		]]>
 	</select>
 	

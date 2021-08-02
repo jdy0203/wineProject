@@ -70,7 +70,7 @@ $(".page-item a").on("click", function(e){
 						<tbody>
 							<c:forEach var="sb" items="${list}" varStatus="status">
 								<tr>
-									<td >${sb.rn}</td>			
+									<td >${sb.rwn}</td>			
 									<td>
 										<c:if test="${sb.answerWriter == '관리자' }">
 											<i class="bi bi-arrow-return-right"></i>&nbsp;

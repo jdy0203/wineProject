@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class SellerBoardVO {
 	
-	private Long rn;
+	private Long rwn;
 	private Long parentSellerBno;
 	private Long childSellerBno;
 	private Long groupOrder;

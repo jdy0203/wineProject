@@ -107,4 +107,10 @@ public class UserMapperTest {
 		attachmapper.deleteimage(6L);
 		
 	}
+	
+	@Test
+	public void testGetWishList() {
+		mapper.getwishList(1L);
+		
+	}
 }
