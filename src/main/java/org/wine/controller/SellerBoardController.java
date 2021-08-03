@@ -35,7 +35,9 @@ public class SellerBoardController {
 		
 		model.addAttribute("list", service.getList(crisb));
 		
-		model.addAttribute("sellerBoardPage", new SellerBoardPageDTO(crisb, 20));
+		int total = service.getTotal(crisb);
+		
+		model.addAttribute("sellerBoardPage", new SellerBoardPageDTO(crisb, total));
 		
 	}
 	

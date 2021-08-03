@@ -23,12 +23,15 @@
 		)order by rn desc
 	</select>
 	
+	<select id="getTotal" resultType="int">
+		select count(*) from tbl_seller_board	
+	</select>
+	
 	<select id="getListWithPaging" resultMap="sellerBoardInfo">
-		<![CDATA[
-		
+		<![CDATA[		
 		 select * from(
 			select * from(        
-          SELECT rownum rwn, rn,PARENT_SELLER_BNO,CHILD_SELLER_BNO,GRP_ORD,title,content,ANSWER_WRITER,WRITER,regdate_c
+          		SELECT rownum rwn, rn,PARENT_SELLER_BNO,CHILD_SELLER_BNO,GRP_ORD,title,content,ANSWER_WRITER,WRITER,regdate_c
                     FROM
 					(      
                 SELECT rownum rn,PARENT_SELLER_BNO,CHILD_SELLER_BNO,GRP_ORD,title,content,ANSWER_WRITER,WRITER,regdate_c 

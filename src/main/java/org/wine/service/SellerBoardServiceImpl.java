@@ -102,6 +102,12 @@ public class SellerBoardServiceImpl implements SellerBoardService{
 		return mapper.answerDelete(parentSellerBno) == 1;
 		
 	}
+
+	@Override
+	public int getTotal(CriteriaSellerBoard crisb) {
+		// TODO Auto-generated method stub
+		return mapper.getTotal(crisb);
+	}
 	
 	
 

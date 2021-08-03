@@ -92,5 +92,10 @@ public class SellerBoardServiceTest {
 		
 	}
 	
-
+	@Test
+	public void testGetTotal() {
+		
+		log.info(service.getTotal(null));
+		
+	}
 }

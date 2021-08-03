@@ -27,4 +27,5 @@ public interface SellerBoardService {
 	
 	public SellerBoardVO answerBtn(Long parentSellerBno);
 
+	public int getTotal(CriteriaSellerBoard crisb);
 }

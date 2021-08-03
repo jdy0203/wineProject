@@ -3,6 +3,7 @@ package org.wine.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.wine.domain.Criteria;
 import org.wine.domain.CriteriaSellerBoard;
 import org.wine.domain.SellerBoardVO;
 
@@ -32,4 +33,6 @@ public interface SellerBoardMapper {
 	public void insertAnswerSelectKey(SellerBoardVO board);
 	
 	public SellerBoardVO answerBtn(Long parentSellerBno);
+	
+	public int getTotal(CriteriaSellerBoard crisb);
 }
