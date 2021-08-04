@@ -281,14 +281,12 @@ public class UserController {
 	@RequestMapping(value = "/nickNameModify", method = RequestMethod.POST)
 	public String modifyNickName(HttpServletRequest request,@RequestParam(value="path" ,required=false) String path, @RequestParam(value="query",required=false) String query,
 			UserVO user, RedirectAttributes rttr) {
-
+		
+		 int nickName = service.modifyNickName(user);
+		 
 		 HttpSession session = request.getSession();
 
 		 String loginUserNickName = (String)session.getAttribute("loginUserNickName");
-		
-		 log.info(user);
-		
-		 int nickName = service.modifyNickName(user);
 		 
 		 log.info("닉네임 변경 성공 :" + nickName);
 		
@@ -314,11 +312,21 @@ public class UserController {
 			 
 		 }else if(nickName != 0){
 			 
-			 service.modifyBoardWriter(user.getUserNickName(),loginUserNickName);
+			 log.info("수정 전 아이디: "+loginUserNickName);
+			 
+			 log.info("수정 후 아이디: "+user.getUserNickName());
+			 
+			 session.setAttribute("loginUserNickName", user.getUserNickName());
+			 
+			 service.modifyBoardWriter(user.getUserNickName(),loginUserNickName);	//일반 게시판 작성자 수정
+			 
+			 service.modifySellerBoardWriter(user.getUserNickName(),loginUserNickName);  //셀러 게시판 작성자 수정
+			 
+			 service.modifyBoardReplyer(user.getUserNickName(),loginUserNickName);  //셀러 게시판 댓글 작성자 수정
 			 
 			 return "redirect:"+ path+query; 
 		 }
-
+		 
 		 return  "redirect:"+ path+query;
 	}
 	

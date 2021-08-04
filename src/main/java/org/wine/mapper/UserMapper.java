@@ -34,6 +34,10 @@ public interface UserMapper {
 	
 	public void modifyBoardWriter(@Param("loginUserNickName") String loginUserNickName,@Param("userNickName") String userNickName);
 	
+	public void modifySellerBoardWriter(@Param("loginUserNickName") String loginUserNickName,@Param("userNickName") String userNickName);
+	
+	public void modifyBoardReplyer(@Param("loginUserNickName") String loginUserNickName,@Param("userNickName") String userNickName);
+	
 	public int modifyPassword(UserVO user);
 	
 	public int modifyUserInfo(UserVO user);

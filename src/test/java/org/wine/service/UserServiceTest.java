@@ -50,4 +50,14 @@ public class UserServiceTest {
 	public void modifyBoard() {
 		service.modifyBoardWriter("test","test1");
 	}
+	
+	@Test
+	public void modifySellerBoard() {
+		service.modifySellerBoardWriter("test","test1");
+	}
+	
+	@Test
+	public void modifyBoardReplyer() {
+		service.modifyBoardReplyer("test","test1");
+	}
 }

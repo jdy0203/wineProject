@@ -157,4 +157,22 @@ public class UserServiceImpl implements UserService {
 		mapper.modifyBoardWriter(loginUserNickName, userNickName);
 	}
 
+	@Override
+	public void modifySellerBoardWriter(String loginUserNickName, String userNickName) {
+		// TODO Auto-generated method stub
+	
+		mapper.modifySellerBoardWriter(loginUserNickName, userNickName);
+	}
+
+	@Override
+	public void modifyBoardReplyer(String loginUserNickName, String userNickName) {
+		// TODO Auto-generated method stub
+		
+		 log.info("수정 전 아이디: "+ userNickName);
+		 
+		 log.info("수정 후 아이디: "+loginUserNickName);
+		
+		mapper.modifyBoardReplyer(loginUserNickName, userNickName);
+	}
+
 }

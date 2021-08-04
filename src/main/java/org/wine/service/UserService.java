@@ -42,4 +42,8 @@ public interface UserService {
 		public int getwishListCnt(Long userNum);
 		
 		public void modifyBoardWriter(String loginUserNickName,String userNickName);
+		
+		public void modifySellerBoardWriter(String loginUserNickName,String userNickName);
+		
+		public void modifyBoardReplyer(String loginUserNickName,String userNickName);
 }

@@ -64,6 +64,16 @@
 		where board_writer =#{userNickName}
 	</update>
 	
+	<update id="modifySellerBoardWriter">
+		update TBL_SELLER_BOARD set writer=#{loginUserNickName}
+		where writer =#{userNickName}
+	</update>
+	
+	<update id="modifyBoardReplyer">
+		update TBL_REPLY set replyer=#{loginUserNickName}
+		where replyer =#{userNickName}
+	</update>
+	
 	<update id="modifyPassword">
 		update TBL_USER set USER_PASSWORD=#{userPassword}
 		where USER_ID = #{userId} and USER_NUM=#{userNum}
