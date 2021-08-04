@@ -230,6 +230,8 @@ public class UserController {
 
 		Long loginNum=lvo.getUserNum();
 		
+		String loginUserNickName =lvo.getUserNickName();
+		
 		List<ProfileVO> headerck =  service.imageCk(loginNum);
 		
 		log.info("headerck : " +headerck);
@@ -237,6 +239,8 @@ public class UserController {
 		session.setAttribute("headerck",headerck);  //이미지 체크 유무
 		
 		session.setAttribute("loginNum", loginNum);
+		
+		session.setAttribute("loginUserNickName", loginUserNickName);
 		
 		return  "redirect:"+ path+query;
 	}
@@ -275,35 +279,47 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/nickNameModify", method = RequestMethod.POST)
-	public String modifyNickName(@RequestParam(value="path" ,required=false) String path, @RequestParam(value="query",required=false) String query,
+	public String modifyNickName(HttpServletRequest request,@RequestParam(value="path" ,required=false) String path, @RequestParam(value="query",required=false) String query,
 			UserVO user, RedirectAttributes rttr) {
 
-		log.info(user);
+		 HttpSession session = request.getSession();
+
+		 String loginUserNickName = (String)session.getAttribute("loginUserNickName");
 		
-		int nickName = service.modifyNickName(user);
+		 log.info(user);
 		
-		if(query==""||query==null) {
-			
-		}else {
-			query = "?" + query;
-		}
+		 int nickName = service.modifyNickName(user);
+		 
+		 log.info("닉네임 변경 성공 :" + nickName);
 		
-		log.info("path :"+path);
-		
-		log.info("query :"+query);
-		
-		if (nickName == 0) { // 일치하지 않는 아이디, 비밀번호 입력 경우
-			
-			int resultNickName = 0;
-			
-			rttr.addFlashAttribute("resultNickName", resultNickName);
-			
-			log.info("resultNickName : "+resultNickName);
-			
-			return "redirect:"+ path+query;
-		}
+		 if(query==""||query==null) {
 	
-		return  "redirect:"+ path+query;
+		 }else {
+			 query = "?" + query;
+		 }
+
+		 log.info("path :"+path);
+
+		 log.info("query :"+query);
+
+		 if (nickName == 0) { // 일치하지 않는 아이디, 비밀번호 입력 경우, 실패할 경우
+
+			 int resultNickName = 0;
+
+			 rttr.addFlashAttribute("resultNickName", resultNickName);
+
+			 log.info("resultNickName : "+resultNickName);
+			 
+			 return "redirect:"+ path+query;
+			 
+		 }else if(nickName != 0){
+			 
+			 service.modifyBoardWriter(user.getUserNickName(),loginUserNickName);
+			 
+			 return "redirect:"+ path+query; 
+		 }
+
+		 return  "redirect:"+ path+query;
 	}
 	
 	@RequestMapping(value = "/passwordModify", method = RequestMethod.POST)

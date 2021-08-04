@@ -19,7 +19,7 @@ public class UserVO {
 	private String userAddress1;
 	private String userAddress2;
 	private String userAddress3;
-	
+	private String loginUserNickName;
 	
 	private List<ProfileVO> profileList;
 }

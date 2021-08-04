@@ -59,6 +59,11 @@
 		where USER_ID = #{userId} and USER_PASSWORD=#{userPassword}
 	</update>
 	
+	<update id="modifyBoardWriter">
+		update tbl_board set board_writer=#{loginUserNickName}
+		where board_writer =#{userNickName}
+	</update>
+	
 	<update id="modifyPassword">
 		update TBL_USER set USER_PASSWORD=#{userPassword}
 		where USER_ID = #{userId} and USER_NUM=#{userNum}

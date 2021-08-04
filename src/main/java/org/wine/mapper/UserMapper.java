@@ -2,6 +2,7 @@ package org.wine.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.wine.domain.SocialWishVO;
 //import org.apache.ibatis.annotations.Select;
 import org.wine.domain.UserVO;
@@ -30,6 +31,8 @@ public interface UserMapper {
 	public int modifyEmail(UserVO user);
 	
 	public int modifyNickName(UserVO user);
+	
+	public void modifyBoardWriter(@Param("loginUserNickName") String loginUserNickName,@Param("userNickName") String userNickName);
 	
 	public int modifyPassword(UserVO user);
 	

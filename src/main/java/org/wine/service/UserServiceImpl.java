@@ -150,4 +150,11 @@ public class UserServiceImpl implements UserService {
 		return mapper.modifyNickName(user);
 	}
 
+	@Override
+	public void modifyBoardWriter(String loginUserNickName, String userNickName) {
+		// TODO Auto-generated method stub
+		
+		mapper.modifyBoardWriter(loginUserNickName, userNickName);
+	}
+
 }

@@ -113,4 +113,11 @@ public class UserMapperTest {
 		mapper.getwishList(1L);
 		
 	}
+	
+	@Test
+	public void testBoardNickName() {
+		
+		mapper.modifyBoardWriter("test", "test1");
+		
+	}
 }

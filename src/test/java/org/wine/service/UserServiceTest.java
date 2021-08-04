@@ -45,4 +45,9 @@ public class UserServiceTest {
 	public void getWishList() {
 		service.getwishList(1L);
 	}
+	
+	@Test
+	public void modifyBoard() {
+		service.modifyBoardWriter("test","test1");
+	}
 }
