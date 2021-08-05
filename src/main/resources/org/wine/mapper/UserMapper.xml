@@ -31,6 +31,11 @@
 		USER_NUM >0
 	</select>
 
+	<select id="getListByModifyNickName" resultMap="userInfo">
+		select*from tbl_user 
+		where USER_NICKNAME = #{loginUserNickName}
+	</select>
+
 	<insert id="join">
 		insert into TBL_USER(USER_NUM, USER_ID,	USER_NICKNAME,USER_EMAIL,USER_PASSWORD,USER_PHONENUM,USER_REALNAME,USER_BIRTHDAY,USER_ADDRESS1,USER_ADDRESS2,USER_ADDRESS3)
 		values(SEQ_USER_TEST.nextval,#{userId},#{userNickName},#{userEmail},#{userPassword},#{userPhoneNum},#{userRealName},to_char(to_date(#{userBirthDay})),#{userAddress1},#{userAddress2},#{userAddress3})

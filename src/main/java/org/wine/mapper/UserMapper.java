@@ -26,6 +26,8 @@ public interface UserMapper {
 	
 	public UserVO userLogin(UserVO user);
 	
+	public UserVO getListByModifyNickName(String loginUserNickName);
+	
 	public List<SocialWishVO> getwishList(Long userNum);
 	
 	public int modifyEmail(UserVO user);

@@ -60,4 +60,9 @@ public class UserServiceTest {
 	public void modifyBoardReplyer() {
 		service.modifyBoardReplyer("test","test1");
 	}
+	
+	@Test
+	public void getListByModifyNickName() {
+		service.getListByModifyNickName("test");
+	}
 }

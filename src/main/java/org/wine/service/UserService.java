@@ -21,6 +21,8 @@ public interface UserService {
 		
 		public UserVO userLogin(UserVO user);
 		
+		public UserVO getListByModifyNickName(String loginUserNickName);
+		
 		public void register(UserVO user);
 		
 		public List<ProfileVO> getAttachList(Long userNum);

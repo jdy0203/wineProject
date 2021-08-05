@@ -175,4 +175,10 @@ public class UserServiceImpl implements UserService {
 		mapper.modifyBoardReplyer(loginUserNickName, userNickName);
 	}
 
+	@Override
+	public UserVO getListByModifyNickName(String loginUserNickName) {
+		// TODO Auto-generated method stub
+		return mapper.getListByModifyNickName(loginUserNickName);
+	}
+
 }

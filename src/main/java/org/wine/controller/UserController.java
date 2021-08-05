@@ -226,6 +226,8 @@ public class UserController {
 		
 		log.info(result);
 		
+		log.info(lvo);
+		
 		session.setAttribute("user", lvo);
 
 		Long loginNum=lvo.getUserNum();
@@ -288,6 +290,8 @@ public class UserController {
 
 		 String loginUserNickName = (String)session.getAttribute("loginUserNickName");
 		 
+		 
+		 
 		 log.info("닉네임 변경 성공 :" + nickName);
 		
 		 if(query==""||query==null) {
@@ -324,9 +328,18 @@ public class UserController {
 			 
 			 service.modifyBoardReplyer(user.getUserNickName(),loginUserNickName);  //셀러 게시판 댓글 작성자 수정
 			 
+			 UserVO lvo = service.getListByModifyNickName(user.getUserNickName());
+			 
+			 session.removeAttribute("user");	
+			 
+			 session.setAttribute("user", lvo);
+			 
+			 log.info("변경된 유저정보 세션 : " + lvo);
+			 
 			 return "redirect:"+ path+query; 
 		 }
 		 
+
 		 return  "redirect:"+ path+query;
 	}
 	
