@@ -483,7 +483,7 @@
 
 	$('#original_password_input').on("propertychange change keyup paste input",function() {
 		
-		var originalPassword = 	<c:out value='${setting.userPassword}'/>;
+		var originalPassword = 	"<c:out value='${setting.userPassword}'/>";
 		console.log(originalPassword)
 		var origianlPasswordInput = $('#original_password_input').val();
 		
